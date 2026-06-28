@@ -1,0 +1,124 @@
+(function () {
+  'use strict';
+
+  // Configuración: actualiza el número de WhatsApp aquí (formato internacional sin +)
+  const WHATSAPP_NUMBER = '34XXXXXXXXX';
+
+  const whatsappLink = document.getElementById('whatsapp-link');
+  const whatsappFloat = document.getElementById('whatsapp-float');
+  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}`;
+
+  if (whatsappLink) whatsappLink.href = waUrl;
+  if (whatsappFloat) whatsappFloat.href = waUrl;
+
+  // Header scroll effect
+  const header = document.querySelector('.header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // Mobile nav toggle
+  const toggle = document.querySelector('.nav__toggle');
+  const menu = document.querySelector('.nav__menu');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    toggle.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Form validation & submission
+  const form = document.getElementById('contact-form');
+  const successMsg = document.getElementById('form-success');
+
+  const fields = {
+    nombre: {
+      el: document.getElementById('nombre'),
+      error: document.getElementById('error-nombre'),
+      validate: (v) => v.trim().length >= 2 || 'Introduce tu nombre (mínimo 2 caracteres).'
+    },
+    apellidos: {
+      el: document.getElementById('apellidos'),
+      error: document.getElementById('error-apellidos'),
+      validate: (v) => v.trim().length >= 2 || 'Introduce tus apellidos (mínimo 2 caracteres).'
+    },
+    email: {
+      el: document.getElementById('email'),
+      error: document.getElementById('error-email'),
+      validate: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || 'Introduce un e-mail válido.'
+    },
+    telefono: {
+      el: document.getElementById('telefono'),
+      error: document.getElementById('error-telefono'),
+      validate: (v) => /^[\d\s+()-]{9,}$/.test(v.trim()) || 'Introduce un teléfono válido.'
+    },
+    motivo: {
+      el: document.getElementById('motivo'),
+      error: document.getElementById('error-motivo'),
+      validate: (v) => v.trim().length >= 10 || 'Describe el motivo de consulta (mínimo 10 caracteres).'
+    }
+  };
+
+  function validateField(name) {
+    const field = fields[name];
+    const result = field.validate(field.el.value);
+    const isValid = result === true;
+
+    field.el.classList.toggle('error', !isValid);
+    field.error.textContent = isValid ? '' : result;
+    return isValid;
+  }
+
+  Object.keys(fields).forEach(name => {
+    fields[name].el.addEventListener('blur', () => validateField(name));
+    fields[name].el.addEventListener('input', () => {
+      if (fields[name].el.classList.contains('error')) {
+        validateField(name);
+      }
+    });
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const allValid = Object.keys(fields).every(name => validateField(name));
+    if (!allValid) return;
+
+    const data = {
+      nombre: fields.nombre.el.value.trim(),
+      apellidos: fields.apellidos.el.value.trim(),
+      email: fields.email.el.value.trim(),
+      telefono: fields.telefono.el.value.trim(),
+      motivo: fields.motivo.el.value.trim()
+    };
+
+    const message = [
+      'Hola, me gustaría solicitar una cita.',
+      '',
+      `*Nombre:* ${data.nombre} ${data.apellidos}`,
+      `*E-mail:* ${data.email}`,
+      `*Teléfono:* ${data.telefono}`,
+      `*Motivo de consulta:* ${data.motivo}`
+    ].join('\n');
+
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, '_blank');
+
+    form.reset();
+    Object.values(fields).forEach(f => {
+      f.el.classList.remove('error');
+      f.error.textContent = '';
+    });
+
+    successMsg.hidden = false;
+    setTimeout(() => { successMsg.hidden = true; }, 8000);
+  });
+})();
