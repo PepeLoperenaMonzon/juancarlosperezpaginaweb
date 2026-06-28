@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  // Configuración: actualiza el número de WhatsApp aquí (formato internacional sin +)
-  const WHATSAPP_NUMBER = '34XXXXXXXXX';
+  // Único lugar donde cambiar el número (formato internacional sin + ni espacios)
+  const WHATSAPP_NUMBER = '34686207785';
 
   const whatsappLink = document.getElementById('whatsapp-link');
   const whatsappFloat = document.getElementById('whatsapp-float');
@@ -38,6 +38,13 @@
   // Form validation & submission
   const form = document.getElementById('contact-form');
   const successMsg = document.getElementById('form-success');
+  const feedbackError = document.getElementById('form-feedback-error');
+  const whatsappFallback = document.getElementById('form-whatsapp-fallback');
+
+  function hideFormFeedback() {
+    if (successMsg) successMsg.hidden = true;
+    if (feedbackError) feedbackError.hidden = true;
+  }
 
   const fields = {
     nombre: {
@@ -88,6 +95,7 @@
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    hideFormFeedback();
 
     const allValid = Object.keys(fields).every(name => validateField(name));
     if (!allValid) return;
@@ -109,8 +117,14 @@
       `*Motivo de consulta:* ${data.motivo}`
     ].join('\n');
 
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, '_blank');
+    const waSubmitUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    const waWindow = window.open(waSubmitUrl, '_blank');
+
+    if (!waWindow) {
+      if (whatsappFallback) whatsappFallback.href = waSubmitUrl;
+      if (feedbackError) feedbackError.hidden = false;
+      return;
+    }
 
     form.reset();
     Object.values(fields).forEach(f => {
@@ -118,7 +132,66 @@
       f.error.textContent = '';
     });
 
-    successMsg.hidden = false;
-    setTimeout(() => { successMsg.hidden = true; }, 8000);
+    if (successMsg) {
+      successMsg.hidden = false;
+      setTimeout(hideFormFeedback, 12000);
+    }
   });
+
+  // Hero carousel
+  const heroCarousel = document.querySelector('.hero__carousel');
+  const heroSlides = document.querySelectorAll('.hero__slide');
+  const heroDots = document.querySelectorAll('.hero__dot');
+  let heroIndex = 0;
+  let heroTimer;
+  const CAROUSEL_INTERVAL = 4000;
+
+  function goToSlide(index) {
+    if (!heroSlides.length) return;
+
+    heroSlides[heroIndex].classList.remove('hero__slide--active');
+    if (heroDots[heroIndex]) {
+      heroDots[heroIndex].classList.remove('hero__dot--active');
+      heroDots[heroIndex].setAttribute('aria-selected', 'false');
+    }
+
+    heroIndex = index;
+
+    heroSlides[heroIndex].classList.add('hero__slide--active');
+    if (heroDots[heroIndex]) {
+      heroDots[heroIndex].classList.add('hero__dot--active');
+      heroDots[heroIndex].setAttribute('aria-selected', 'true');
+    }
+  }
+
+  function nextSlide() {
+    goToSlide((heroIndex + 1) % heroSlides.length);
+  }
+
+  function startCarousel() {
+    clearInterval(heroTimer);
+    heroTimer = setInterval(nextSlide, CAROUSEL_INTERVAL);
+  }
+
+  function stopCarousel() {
+    clearInterval(heroTimer);
+  }
+
+  if (heroSlides.length > 1) {
+    heroDots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        goToSlide(i);
+        startCarousel();
+      });
+    });
+
+    if (heroCarousel) {
+      heroCarousel.addEventListener('mouseenter', stopCarousel);
+      heroCarousel.addEventListener('mouseleave', startCarousel);
+      heroCarousel.addEventListener('focusin', stopCarousel);
+      heroCarousel.addEventListener('focusout', startCarousel);
+    }
+
+    startCarousel();
+  }
 })();
