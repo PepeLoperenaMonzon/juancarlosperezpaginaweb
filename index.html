@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Juan Carlos Pérez Guerra — Psicólogo. Terapia para adultos, adolescentes, ansiedad, depresión, psicología deportiva y terapia online.">
   <title>Juan Carlos Pérez Guerra | Psicólogo</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -14,7 +15,13 @@
 
   <header class="header" id="inicio">
     <nav class="nav container">
-      <a href="#inicio" class="nav__logo">J.C. Pérez Guerra</a>
+      <a href="#inicio" class="nav__logo">
+        <svg class="nav__logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="36" height="36" aria-hidden="true">
+          <circle cx="20" cy="20" r="20" fill="#2d5248"/>
+          <text x="20" y="25" text-anchor="middle" fill="#faf9f7" font-family="Georgia, serif" font-size="15" font-weight="700">JC</text>
+        </svg>
+        <span class="nav__logo-text">J.C. Pérez Guerra</span>
+      </a>
       <button class="nav__toggle" aria-label="Abrir menú" aria-expanded="false">
         <span></span>
         <span></span>
@@ -33,7 +40,18 @@
   <main>
 
     <section class="hero">
-      <div class="hero__bg"></div>
+      <div class="hero__carousel" aria-hidden="true">
+        <div class="hero__slide hero__slide--active" style="background-image: url('assets/oficina.jpeg')"></div>
+        <div class="hero__slide" style="background-image: url('assets/oficina1.jpeg')"></div>
+        <div class="hero__slide" style="background-image: url('assets/oficina2.jpeg')"></div>
+        <div class="hero__slide" style="background-image: url('assets/oficina3.jpeg')"></div>
+        <div class="hero__slide" style="background-image: url('assets/oficina4.jpeg')"></div>
+        <div class="hero__slide" style="background-image: url('assets/oficina5.jpeg')"></div>
+        <div class="hero__slide" style="background-image: url('assets/oficina6.jpeg')"></div>
+        <div class="hero__slide" style="background-image: url('assets/oficina7.jpeg')"></div>
+        <div class="hero__slide" style="background-image: url('assets/oficina8.jpeg')"></div>
+      </div>
+      <div class="hero__overlay"></div>
       <div class="container hero__content">
         <p class="hero__label">Psicólogo clínico y deportivo</p>
         <h1 class="hero__title">Juan Carlos Pérez Guerra</h1>
@@ -46,32 +64,92 @@
           <a href="#servicios" class="btn btn--outline">Ver servicios</a>
         </div>
       </div>
+      <div class="hero__dots" role="tablist" aria-label="Fotos del consultorio">
+        <button type="button" class="hero__dot hero__dot--active" aria-label="Foto 1" aria-selected="true"></button>
+        <button type="button" class="hero__dot" aria-label="Foto 2" aria-selected="false"></button>
+        <button type="button" class="hero__dot" aria-label="Foto 3" aria-selected="false"></button>
+        <button type="button" class="hero__dot" aria-label="Foto 4" aria-selected="false"></button>
+        <button type="button" class="hero__dot" aria-label="Foto 5" aria-selected="false"></button>
+        <button type="button" class="hero__dot" aria-label="Foto 6" aria-selected="false"></button>
+        <button type="button" class="hero__dot" aria-label="Foto 7" aria-selected="false"></button>
+        <button type="button" class="hero__dot" aria-label="Foto 8" aria-selected="false"></button>
+        <button type="button" class="hero__dot" aria-label="Foto 9" aria-selected="false"></button>
+      </div>
     </section>
 
     <section class="about section" id="sobre-mi">
-      <div class="container about__grid">
-        <div class="about__visual">
-          <div class="about__image-placeholder" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-              <circle cx="12" cy="8" r="4"/>
-              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-            </svg>
-          </div>
-        </div>
-        <div class="about__text">
+      <div class="container">
+        <div class="about__header">
           <span class="section__label">Sobre mí</span>
-          <h2 class="section__title">Acompañamiento profesional y cercano</h2>
-          <p>
-            Soy psicólogo con formación y experiencia en el abordaje de diversas
-            problemáticas emocionales y conductuales. Mi enfoque se centra en crear
-            un vínculo terapéutico de confianza, desde el que podamos trabajar juntos
-            hacia el bienestar y el equilibrio personal.
-          </p>
-          <p>
-            Ofrezco un espacio de escucha activa, respeto y profesionalidad, tanto
-            en consulta presencial como a través de terapia online, para que puedas
-            acceder al apoyo que necesitas con la comodidad que mejor se adapte a ti.
-          </p>
+          <h2 class="section__title">Acompañamiento profesional basado en la evidencia</h2>
+        </div>
+        <div class="about__grid">
+          <div class="about__visual">
+            <div class="about__gallery">
+              <img
+                src="assets/carlos_de_cara.jpeg"
+                alt="Juan Carlos Pérez Guerra, psicólogo"
+                class="about__photo about__photo--main"
+                loading="lazy"
+              >
+              <img
+                src="assets/carlos_lado.jpeg"
+                alt="Juan Carlos Pérez Guerra en consulta"
+                class="about__photo about__photo--secondary"
+                loading="lazy"
+              >
+              <img
+                src="assets/carlos_fondo_blanco.jpeg"
+                alt="Juan Carlos Pérez Guerra, retrato profesional"
+                class="about__photo about__photo--secondary"
+                loading="lazy"
+              >
+            </div>
+          </div>
+          <div class="about__text">
+            <p class="about__lead">
+              Mi nombre es <strong>Juan Carlos Pérez Guerra</strong>, psicólogo general sanitario
+              colegiado <span class="about__badge">P-02892</span> en Las Palmas de Gran Canaria.
+            </p>
+            <p>
+              Desde que comencé mi trayectoria profesional he tenido claro que la psicología debe ser
+              una herramienta práctica, útil y basada en la evidencia científica. Mi objetivo es ayudar
+              a cada persona a comprender lo que le ocurre y proporcionarle las estrategias necesarias
+              para afrontar sus dificultades, favorecer su bienestar y mejorar su calidad de vida
+              respetando las necesidades de cada persona.
+            </p>
+            <p>
+              Trabajo desde un enfoque cognitivo-conductual, considerado uno de los tratamientos
+              psicológicos con mayor respaldo científico, integrando también técnicas procedentes de
+              las terapias contextuales y de tercera generación cuando las necesidades de cada persona
+              lo requieren. Entiendo que no existen soluciones universales, por lo que adapto cada
+              intervención a la historia, circunstancias y objetivos de quien acude a consulta.
+            </p>
+            <p>
+              Además del tratamiento de trastornos psicológicos como la ansiedad, la depresión o los
+              problemas emocionales, muchas personas solicitan ayuda por situaciones cotidianas que,
+              sin constituir un trastorno, afectan significativamente a su bienestar. Dificultades para
+              gestionar el estrés, problemas de autoestima, procesos de duelo, toma de decisiones,
+              conflictos de pareja o familiares, regulación emocional o crecimiento personal son algunos
+              de los motivos más habituales por los que acompaño a mis pacientes.
+            </p>
+            <p>
+              Me gradué en Psicología y posteriormente cursé el Máster en Psicología General Sanitaria
+              en la Universidad Fernando Pessoa. Considero que la formación continua es una parte esencial
+              de mi profesión, por lo que sigo actualizando de manera constante mis conocimientos para
+              ofrecer una atención de calidad y basada en los avances más recientes de la psicología.
+              Entre mi formación complementaria se encuentran el Máster en Psicología Deportiva, formación
+              en Psicoterapia Cognitivo-Conductual y formación práctica en Psicoterapia Emocional impartida
+              por el Instituto de Psicología Emocional.
+            </p>
+            <p>
+              Actualmente compagino la atención psicológica en consulta con mi labor como psicólogo
+              deportivo, colaborando con entidades como el Club Baloncesto Gran Canaria y el Club
+              Natación Metropole, experiencia que me permite trabajar aspectos como el rendimiento,
+              la gestión de la presión, la motivación y el desarrollo personal tanto en deportistas
+              como en personas de cualquier ámbito.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -189,7 +267,7 @@
               </div>
               <h3>WhatsApp profesional</h3>
               <p>La forma más rápida de contactar. Escríbeme directamente y resolveremos tus dudas.</p>
-              <a href="https://wa.me/34686207785" class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" id="whatsapp-link">
+              <a href="#" class="btn btn--whatsapp" target="_blank" rel="noopener noreferrer" id="whatsapp-link">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.884 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
@@ -200,7 +278,7 @@
 
           <form class="contact__form" id="contact-form" novalidate>
             <h3 class="form__title">Solicita que te contacte</h3>
-            <p class="form__subtitle">Rellena tus datos y me pondré en contacto contigo.</p>
+            <p class="form__subtitle">Rellena tus datos. Al enviar, se abrirá WhatsApp con el mensaje preparado; solo tienes que pulsar <strong>Enviar</strong> allí.</p>
 
             <div class="form__row">
               <div class="form__group">
@@ -234,14 +312,18 @@
               <span class="form__error" id="error-motivo"></span>
             </div>
 
-            <button type="submit" class="btn btn--primary btn--full">Enviar solicitud</button>
+            <button type="submit" class="btn btn--primary btn--full">Continuar en WhatsApp</button>
 
             <div class="form__success" id="form-success" hidden>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                 <polyline points="22 4 12 14.01 9 11.01"/>
               </svg>
-              <p>¡Gracias! He recibido tu solicitud y me pondré en contacto contigo pronto.</p>
+              <p>Se ha abierto WhatsApp con tu mensaje. Confirma el envío pulsando <strong>Enviar</strong> en la conversación para que reciba tu solicitud.</p>
+            </div>
+
+            <div class="form__feedback form__feedback--error" id="form-feedback-error" hidden>
+              <p>No se pudo abrir WhatsApp automáticamente. <a href="#" id="form-whatsapp-fallback" target="_blank" rel="noopener noreferrer">Haz clic aquí para abrirlo manualmente</a> y enviar tu solicitud.</p>
             </div>
           </form>
         </div>
@@ -268,7 +350,7 @@
               <span class="star star--filled">★</span>
               <span class="star star--filled">★</span>
             </div>
-            <span class="reviews__count">Basado en opiniones de Doctoralia</span>
+            <span class="reviews__count">Basado en opiniones verificadas de Doctoralia</span>
           </div>
         </div>
 
@@ -283,13 +365,12 @@
                 <span class="star star--filled">★</span>
                 <span class="star star--filled">★</span>
               </div>
-              <time datetime="2025-11">Noviembre 2025</time>
+              <time datetime="2026-05">Mayo 2026</time>
             </div>
             <p class="review-card__text">
-              "Excelente profesional. Desde la primera sesión me sentí comprendido y acompañado.
-              Su trato es cercano pero muy profesional. Totalmente recomendable."
+              «Mi primera sesión y salí super animada, todo bien explicado.»
             </p>
-            <span class="review-card__author">Paciente verificado · Doctoralia</span>
+            <span class="review-card__author">Mónica · Cita verificada · Doctoralia</span>
           </article>
 
           <article class="review-card">
@@ -301,13 +382,14 @@
                 <span class="star star--filled">★</span>
                 <span class="star star--filled">★</span>
               </div>
-              <time datetime="2025-09">Septiembre 2025</time>
+              <time datetime="2026-04">Abril 2026</time>
             </div>
             <p class="review-card__text">
-              "Llevo varios meses en terapia con Juan Carlos y la evolución ha sido notable.
-              Me ha ayudado muchísimo a gestionar mi ansiedad con herramientas prácticas."
+              «Juan Carlos es un gran profesional del sector, muy amable y cercano. Te ayuda mucho
+              a hacer introspección, reflexionar y ver un punto de vista diferente a los problemas.
+              Lo recomiendo mucho.»
             </p>
-            <span class="review-card__author">Paciente verificado · Doctoralia</span>
+            <span class="review-card__author">Javier Alonso · Doctoralia</span>
           </article>
 
           <article class="review-card">
@@ -319,13 +401,13 @@
                 <span class="star star--filled">★</span>
                 <span class="star star--filled">★</span>
               </div>
-              <time datetime="2025-07">Julio 2025</time>
+              <time datetime="2026-03">Marzo 2026</time>
             </div>
             <p class="review-card__text">
-              "Muy buen psicólogo. Puntual, empático y con un gran conocimiento.
-              La terapia online funciona perfectamente y es muy cómoda."
+              «Fue genial la sesión con Juan Carlos. Es un buen profesional y me dio mucha confianza
+              para sacar muchas cosas de mi interior. Muchas gracias.»
             </p>
-            <span class="review-card__author">Paciente verificado · Doctoralia</span>
+            <span class="review-card__author">José Socorro · Cita verificada · Doctoralia</span>
           </article>
 
           <article class="review-card">
@@ -337,20 +419,35 @@
                 <span class="star star--filled">★</span>
                 <span class="star star--filled">★</span>
               </div>
-              <time datetime="2025-05">Mayo 2025</time>
+              <time datetime="2026-01">Enero 2026</time>
             </div>
             <p class="review-card__text">
-              "Mi hijo adolescente ha mejorado mucho gracias a su intervención.
-              Supo conectar con él desde el primer momento. Estamos muy agradecidos."
+              «Las sesiones son cercanas y me siento muy cómoda. Muy buen profesional, con el que estoy
+              aprendiendo a entenderme mejor y manejar mis emociones.»
             </p>
-            <span class="review-card__author">Paciente verificado · Doctoralia</span>
+            <span class="review-card__author">Paula · Doctoralia</span>
           </article>
 
         </div>
 
+        <div class="reviews__cta">
+          <a
+            href="https://www.doctoralia.es/juan-carlos-perez-guerra/psicologo/las-palmas-de-gran-canaria#profile-reviews"
+            class="btn btn--outline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver más opiniones en Doctoralia
+          </a>
+        </div>
+
         <p class="reviews__source">
-          Reseñas publicadas en
-          <a href="https://www.doctoralia.es" target="_blank" rel="noopener noreferrer">Doctoralia</a>
+          Opiniones publicadas en
+          <a
+            href="https://www.doctoralia.es/juan-carlos-perez-guerra/psicologo/las-palmas-de-gran-canaria#profile-reviews"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Doctoralia</a>
         </p>
       </div>
     </section>
@@ -373,7 +470,7 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/34686207785" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp" id="whatsapp-float">
+  <a href="#" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp" id="whatsapp-float">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.884 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
