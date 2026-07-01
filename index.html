@@ -81,7 +81,7 @@
 </head>
 <body>
 
-  <header class="header" id="inicio">
+  <header class="header">
     <nav class="nav container">
       <a href="#inicio" class="nav__logo">
         <svg class="nav__logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="36" height="36" aria-hidden="true">
@@ -100,6 +100,7 @@
         <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#donde-encontrarnos">Dónde encontrarnos</a></li>
         <li><a href="#resenas">Reseñas</a></li>
       </ul>
     </nav>
@@ -107,7 +108,7 @@
 
   <main>
 
-    <section class="hero">
+    <section class="hero" id="inicio">
       <div class="hero__carousel" aria-hidden="true">
         <div class="hero__slide hero__slide--active" style="background-image: url('assets/oficina.jpeg')"></div>
         <div class="hero__slide" style="background-image: url('assets/oficina1.jpeg')"></div>
@@ -396,9 +397,9 @@
           </form>
         </div>
 
-        <div class="contact__location">
+        <div class="contact__location" id="donde-encontrarnos">
           <div class="contact__address">
-            <h3 class="contact__address-title">Dónde estoy</h3>
+            <h3 class="contact__address-title">Dónde encontrarnos</h3>
             <p class="contact__address-name">Centro de Psicología Clínica y de la Salud</p>
             <address class="contact__address-text">
               Calle Murga, 9<br>
@@ -559,8 +560,10 @@
       </div>
       <nav class="footer__nav" aria-label="Enlaces del pie de página">
         <a href="#inicio">Inicio</a>
+        <a href="#sobre-mi">Sobre mí</a>
         <a href="#servicios">Servicios</a>
         <a href="#contacto">Contacto</a>
+        <a href="#donde-encontrarnos">Dónde encontrarnos</a>
         <a href="#resenas">Reseñas</a>
       </nav>
       <p class="footer__copy">&copy; 2026 Juan Carlos Pérez Guerra. Todos los derechos reservados.</p>
