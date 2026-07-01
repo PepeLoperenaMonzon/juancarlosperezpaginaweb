@@ -730,6 +730,11 @@ a:hover {
   color: var(--color-primary-dark);
 }
 
+.form__success[hidden],
+.form__feedback[hidden] {
+  display: none !important;
+}
+
 .form__success svg {
   width: 24px;
   height: 24px;

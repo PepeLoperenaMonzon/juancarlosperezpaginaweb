@@ -35,6 +35,17 @@
     });
   });
 
+  document.querySelectorAll('a[href="#inicio"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const inicio = document.getElementById('inicio');
+      if (!inicio) return;
+
+      e.preventDefault();
+      inicio.scrollIntoView({ behavior: 'smooth' });
+      history.pushState(null, '', '#inicio');
+    });
+  });
+
   // Form validation & submission
   const form = document.getElementById('contact-form');
   const successMsg = document.getElementById('form-success');
@@ -45,6 +56,8 @@
     if (successMsg) successMsg.hidden = true;
     if (feedbackError) feedbackError.hidden = true;
   }
+
+  hideFormFeedback();
 
   const fields = {
     nombre: {
@@ -93,6 +106,7 @@
     });
   });
 
+  if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     hideFormFeedback();
@@ -137,6 +151,7 @@
       setTimeout(hideFormFeedback, 12000);
     }
   });
+  }
 
   // Hero carousel
   const heroCarousel = document.querySelector('.hero__carousel');
